@@ -15,12 +15,17 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments("id");
-            $table->string('name');
+            // Obligatorio para: Estudiantes, Profesores.
+            $table->string('name')->default(null);
             $table->string('email')->unique();
-            $table->string('rut')->unique();
-            $table->string('carrera');
+            // rut requerido segun el rol. Obligatorio para: Estudiantes, Profesores.
+            $table->string('rut')->default(null);
+            // carrera requerida segun el rol. Obligatorio para: Estudiantes.
+            $table->string('carrera')->default(null);
             // rol primario, Admin no es un rol seleccionable.
             $table->enum('rol', ['Admin', 'Estudiante', 'Profesor', 'Secretaria', 'Encargado Titulación']);
+            // El Encargado de Titulación puede además tener el rol de Profesor
+            $table->string("rol_secundario")->default(null);
             // en caso de eliminar a un usuario, solo pasa de Activo a Removido.
             $table->enum('estado', ['Activo', 'Removido'])->default('Activo');
             $table->timestamp('email_verified_at')->nullable();
