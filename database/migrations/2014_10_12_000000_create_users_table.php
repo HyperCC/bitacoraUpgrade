@@ -17,6 +17,12 @@ class CreateUsersTable extends Migration
             $table->increments("id");
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('rut')->unique();
+            $table->string('carrera');
+            // rol primario, Admin no es un rol seleccionable.
+            $table->enum('rol', ['Admin', 'Estudiante', 'Profesor', 'Secretaria', 'Encargado Titulación']);
+            // en caso de eliminar a un usuario, solo pasa de Activo a Removido.
+            $table->enum('estado', ['Activo', 'Removido'])->default('Activo');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
