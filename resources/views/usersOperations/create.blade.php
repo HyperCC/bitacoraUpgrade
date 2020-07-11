@@ -10,15 +10,16 @@
 </head>
 <body>
 
-<h1 class="display-4">dashboard admin</h1>
+<h1 class="display-4">CREAR USUARIO</h1>
 
 <hr>
 <br>
 
-<form class="bg-white shadow rounded" action="#">
+<form class="bg-white shadow rounded" method="POST" action="{{ route('users-store') }}">
+    @csrf
     <div class="form-group">
-        <label for="correo"> Correo </label>
-        <input name="correo" type="email">
+        <label for="email"> Correo </label>
+        <input name="email" type="email">
     </div>
 
     <div class="form-group">
