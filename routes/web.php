@@ -42,6 +42,14 @@ Route::get('users-create/', 'UserController@create')->name('users-create');
 //Ruta para almacenar un usuario.
 Route::post('users-store/', 'UserController@store')->name('users-store');
 
+// eliminar o marcar como no activo. deberia ser verbo 'delete' en vez de patch, pero no se elimina realmente.
+Route::patch('users-destroy/{user}, UserController@destroy')->name('users-destroy');
+
+//editar un usuario.
+Route::get('users-edit/{user}', 'UserController@edit')->name('users-edit');
+//editar los datos de un usuario en la DB.
+Route::patch('users-update/{user}', 'UserController@update')->name('users-update');
+
 // mostrar un usuario en especifico
 Route::get('users-show/{user}', 'UserController@show')->name('users-show');
 

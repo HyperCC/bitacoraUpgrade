@@ -5,22 +5,27 @@
 @section('content_body')
 
     <div class="container">
-        <h1>Index Users</h1>
+        <h1> Todos los Usuarios registrados</h1>
 
         <ul class="list-group">
             @forelse($user as $us)
-                <li class="list-group-item">
+                <li class="list-group-item border-0 mb-3 shadow-sm">
                     <a href="{{route('users-show', $us)}}" class="d-flex text-secondary">
-                        <span class="font-weight-bold">
+                        <div class="font-weight-bold">
+                            <i>{{$us->name}}</i>
+                        </div>
+                        #
+                        <div class="font-weight-bold">
                             {{$us->email}}
-                        </span>
-                        <span class="text-black-50">
+                        </div>
+                        #
+                        <div class="text-black-50">
                             {{$us->rol}}
-                        </span>
+                        </div>
                     </a>
                 </li>
             @empty
-                <li class="list-group-item">
+                <li class="list-group-item border-0 mb-3">
                     Database Empty - Error.
                 </li>
             @endforelse

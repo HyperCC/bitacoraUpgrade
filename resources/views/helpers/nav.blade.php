@@ -6,10 +6,10 @@
 
     <ul class="nav nav-pills">
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('home') }}">home </a>
+            <a class="nav-link" href="{{ route('home') }}"> Home </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('users-index') }}">about </a>
+            <a class="nav-link" href="{{ route('users-index') }}"> Usuarios  </a>
         </li>
     </ul>
 
