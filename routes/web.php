@@ -34,10 +34,17 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 // Ruta para mostrar todos los usuarios juntos.
 //Route::get('users-index/', 'UserController@index')->name('users-index');
 
+// mostrar todos los usuarios en DB.
+Route::get('users-index/', 'UserController@index')->name('users-index');
+
 // Ruta para la creacion de un usuario.
 Route::get('users-create/', 'UserController@create')->name('users-create');
 //Ruta para almacenar un usuario.
 Route::post('users-store/', 'UserController@store')->name('users-store');
+
+// mostrar un usuario en especifico
+Route::get('users-show/{user}', 'UserController@show')->name('users-show');
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

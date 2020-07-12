@@ -15,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('usersOperations.index', [
+            'user'=> User::paginate()
+        ]);
     }
 
     /**
@@ -53,9 +55,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('usersOperations.show', [
+            'user'=> $user
+        ]);
     }
 
     /**
