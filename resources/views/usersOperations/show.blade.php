@@ -1,44 +1,51 @@
 @extends('helpers.template')
 
-@section('title_head', 'Usuario | $user->name')
+@section('title_head', 'Usuario | '.$user->name)
 
 @section('content_body')
 
-    <div class="container">
+    <div class="container" style=".container { background: gray; min-height: 80vh; }">
 
-        <a href="{{ route('users-index') }}">Regresar</a>
+        <a class="btn btn-outline-secondary mb-4" href="{{ route('users-index') }}">
+            Regresar
+        </a>
 
-        <h2> {{ $user->name }} | {{ $user->email }}</h2>
+        <h3> Nombre: {{ $user->name }} | Correo: {{ $user->email }}</h3>
 
         <p class="lead text-secondary">
-            {{ $user->rut}}
+            Rut: {{ $user->rut}}
         </p>
 
         <p class="lead text-secondary">
-            {{ $user->carrera}}
+            Carrera: {{ $user->carrera}}
         </p>
 
         <p class="lead text-secondary">
-            {{ $user->rol}}
+            Rol: {{ $user->rol}}
         </p>
 
         <p class="lead text-secondary">
-            {{ $user->rol_secundario}}
+            Rol Secundario: {{ $user->rol_secundario}}
         </p>
 
         <p class="lead text-secondary">
-            {{ $user->estado}}
+            Estado: {{ $user->estado}}
         </p>
 
         <p class="text-black-50">
-            <small> {{$user->created_at->diffForHumans() }}</small>
+            <small> Registrado {{$user->created_at->diffForHumans() }}</small>
         </p>
 
         <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
                 <a class="btn btn-primary" href="{{ route('users-edit', $user) }}"> Editar </a>
 
-                <a class="btn btn-danger" href="{{ route('users-destroy', $user) }}"> Eliminar </a>
+                <form method="POST" action="{{ route('users-remover', $user) }}">
+                    @csrf
+                    @method('PATCH')
+                    <input type="hidden" name="estado" value="Removido">
+                    <button class="btn btn-danger" type="submit">Eliminar</button>
+                </form>
             </div>
         </div>
 

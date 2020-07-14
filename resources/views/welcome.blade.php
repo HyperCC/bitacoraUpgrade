@@ -6,26 +6,21 @@
 
     <div class="container">
 
-        <div class="jumbotron">
-            <h1 class="display-4">Bitacora UCN</h1>
-            <p class="lead">Bitácora Web para el seguimiento y control de los trabajos de titulación del DISC</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            </p>
-        </div>
-
-        <div class="row">
+        <div class="row py-3">
             <div class="col-12 col-lg-6">
 
-                <h1 class="display-4 text-primary">Bitacora UCN </h1>
+                <h1 class="display-4 text-primary py-3">Bitacora UCN </h1>
                 <p class="lead text-secondary">
                     Bitácora Web para el seguimiento y control de los trabajos de titulación del DISC
                 </p>
 
                 @auth
-                    <h4> Hola {{ auth()->user()->name }} / {{ auth()->user()->email }}</h4>
+                    <h4 class="pt-3"> Hola {{ auth()->user()->name }} | {{ auth()->user()->email }}</h4>
+                @else
+                    <div class="pt-3">
+                        <p for="the_login" class="text-primary ">Para continuar debes ingresar con tu cuenta!</p>
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-lg rounded-pill">Login</a>
+                    </div>
                 @endauth
 
             </div>

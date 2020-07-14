@@ -6,10 +6,12 @@
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <link rel="shortcut icon" href="{{{ asset('img/favicon.png') }}}">
+
 </head>
 <body>
 
-<div class="d-flex flex-column h-screen justify-content-between" id="app">
+<div class="d-flex flex-column h-screen" id="app">
 
     <header>
         @include('helpers.nav')
@@ -19,7 +21,7 @@
         @yield('content_body')
     </main>
 
-    <footer class="bg-white text-center text-black-50 py-3 shadow">
+    <footer class="bg-dark text-center text-light py-3 shadow">
         {{ config('app.name') }} | Copyright @ {{ date('Y') }}
     </footer>
 

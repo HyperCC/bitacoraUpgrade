@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\SaveUserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -42,7 +43,7 @@ class UserController extends Controller
     {
         User::create([
             'email' => request('email'),
-            'password' => bcrypt(request('password')),
+            'password' => Hash::make(request('password')),
             'rol' => request('rol')
         ]);
 
@@ -70,6 +71,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+
         return view('usersOperations.edit', [
             'user' => $user
         ]);
@@ -85,21 +87,23 @@ class UserController extends Controller
     public function update(User $user)
     {
         $user->update([
+            'name' => request('name'),
             'email' => request('email'),
-            'rol' => request('rol')
+            'rut' => request('rut'),
+            'carrera' => request('carrera'),
+            'rol' => request('rol'),
+            'rol_secundario' => request('rol_secundario'),
+            'password' => bcrypt(request('password'))
         ]);
 
         return redirect()->route('users-show', $user);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function remover(User $user)
     {
-        //
+        $user->update([
+            'estado' => request('estado')
+        ]);
+        return redirect()->route('users-index', $user);
     }
 }
