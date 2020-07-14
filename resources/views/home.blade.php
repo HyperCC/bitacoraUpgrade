@@ -24,6 +24,15 @@
                         <div class="card-body">
                             <a href="{{ route('users-create') }}">Crear Usuario</a>
                         </div>
+
+                        <div class="card-body">
+                            <a href="{{ route('users-index') }}">Usuarios Activos</a>
+                        </div>
+
+                        <div class="card-body">
+                            <a href="#">Usuarios Removidos</a>
+                        </div>
+
                     @endif
 
                     <div class="card-body">
