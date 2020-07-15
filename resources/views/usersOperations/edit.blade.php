@@ -8,7 +8,7 @@
 
         @include('helpers.validate_errors')
 
-        <form class="bg-white py-3 px 3 shadow rounded" method="POST"
+        <form class="bg-white py-3 px-4 shadow rounded" method="POST"
               action="{{ route('users-update', $user) }}">
             @csrf
             @method('PATCH')
@@ -47,8 +47,7 @@
                     <option @if($user->rol=='Estudiante') selected @endif>Estudiante</option>
                     <option @if($user->rol=='Profesor') selected @endif >Profesor</option>
                     <option @if($user->rol=='Secretaria') selected @endif>Secretaria</option>
-                    <option @if($user->rol=='Encargado Titulacion') selected @endif>Encargado Titulacion
-                    </option>
+                    <option @if($user->rol=='Encargado Titulación') selected @endif>Encargado Titulación</option>
                 </select>
             </div>
 

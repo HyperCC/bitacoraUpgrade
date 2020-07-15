@@ -6,6 +6,7 @@ use App\SaveUserRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use function Sodium\compare;
 
 class UserController extends Controller
 {
@@ -29,7 +30,7 @@ class UserController extends Controller
     public function create()
     {
         return view('usersOperations.create', [
-            'uss' => new User
+            'user' => new User,
         ]);
     }
 
@@ -41,10 +42,13 @@ class UserController extends Controller
      */
     public function store()
     {
+
+        //TODO: en caso de tener doble rol.
         User::create([
             'email' => request('email'),
             'password' => Hash::make(request('password')),
-            'rol' => request('rol')
+            'rol' => request('rol'),
+            //'rol_secundario' => request('rol_secundario')
         ]);
 
         return redirect()->route('home');
@@ -86,13 +90,19 @@ class UserController extends Controller
      */
     public function update(User $user)
     {
+        $scndRol = 'ninguno';
+
+        if (!strcmp('Encargado Titulación', request('rol'))) {
+            $scndRol = 'Profesor';
+        }
+
         $user->update([
             'name' => request('name'),
             'email' => request('email'),
             'rut' => request('rut'),
             'carrera' => request('carrera'),
             'rol' => request('rol'),
-            'rol_secundario' => request('rol_secundario'),
+            'rol_secundario' => $scndRol,
             'password' => bcrypt(request('password'))
         ]);
 
